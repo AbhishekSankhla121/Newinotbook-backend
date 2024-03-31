@@ -15,7 +15,7 @@ const fecthuser = require("../Middleware/authenticate_user");
 //**Method:POST**//
 //**Register Route no user authentication require **//
 router.post("/userdetail", upload.single('image'), [
-    body("name", "name cannot be empty").isLength({ min: 1 }),
+    body("name", "Name cannot be empty").isLength({ min: 1 }),
     body("name").custom((value, { req }) => {
         const containsOnlyLetters = /^[a-zA-Z\s]+$/;
 
@@ -51,7 +51,7 @@ router.post("/userdetail", upload.single('image'), [
         return true;
     }),
 
-    body("mobile", "Enter the valid mobile").isNumeric(),
+    body("mobile", "Mobile Number format invalid!").isNumeric(),
     body("mobile").custom((value, { req }) => {
         console.log(value.length)
         if (value.length === 10) {
@@ -59,9 +59,10 @@ router.post("/userdetail", upload.single('image'), [
             return true;
         }
         else {
-            throw new Error("10 digit mobile number");
+            throw new Error("mobile number must be in 10 digit");
         }
     }),
+    body("dob","date of birth cannot be empty").isLength({ min: 1 }),
         body("dob").custom((value, { req }) => {
         if (new Date() <= new Date(value)) {
             throw new Error("Enter a valid birthdate");
