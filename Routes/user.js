@@ -50,18 +50,7 @@ router.post("/userdetail", upload.single('image'), [
         }
         return true;
     }),
-    body('image').custom((value, { req }) => {
-        if (!req.file) {
-            throw new Error("please Choose an image");
-        }
-        return true;
-    }),
-    body("dob").custom((value, { req }) => {
-        if (new Date() <= new Date(value)) {
-            throw new Error("Enter a valid birthdate");
-        }
-        return true; // Return true if validation passes
-    }),
+
     body("mobile", "Enter the valid mobile").isNumeric(),
     body("mobile").custom((value, { req }) => {
         console.log(value.length)
@@ -72,6 +61,18 @@ router.post("/userdetail", upload.single('image'), [
         else {
             throw new Error("10 digit mobile number");
         }
+    }),
+        body("dob").custom((value, { req }) => {
+        if (new Date() <= new Date(value)) {
+            throw new Error("Enter a valid birthdate");
+        }
+        return true; // Return true if validation passes
+    }),
+        body('image').custom((value, { req }) => {
+        if (!req.file) {
+            throw new Error("please Choose an image");
+        }
+        return true;
     }),
 ], async (req, res) => {
     let success = false;
