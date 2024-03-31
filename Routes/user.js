@@ -62,6 +62,7 @@ router.post("/userdetail", upload.single('image'), [
             throw new Error("mobile number must be in 10 digit");
         }
     }),
+     body("gender","select gender field").isLength({ min: 1 }),
     body("dob","date of birth cannot be empty").isLength({ min: 1 }),
         body("dob").custom((value, { req }) => {
         if (new Date() <= new Date(value)) {
