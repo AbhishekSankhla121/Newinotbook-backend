@@ -192,7 +192,7 @@ router.post("/login", [
         const jwt_data = jwt.sign(data, jwt_secrate);
         console.log(jwt_data);
         success = true;
-        res.status(201).json({ "jwt_token": jwt_data, success });
+        res.statu(201).json({ "jwt_token": jwt_data, success });
     } catch (error) {
 
         return res.status(500).json({ "error": "500 Error in internal server", "type": "user.js -> /login", "message": error.message });
