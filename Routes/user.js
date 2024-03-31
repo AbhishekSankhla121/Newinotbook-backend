@@ -77,7 +77,7 @@ router.post("/userdetail", upload.single('image'), [
     let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(500).json({ "error in validation": errors.array(), success });
+        return res.status(500).json({ "validationError": errors.array(), success });
     }
     const fileImagename = req.file.filename;
     console.log(fileImagename)
