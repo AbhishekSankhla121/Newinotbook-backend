@@ -34,19 +34,19 @@ router.post("/userdetail", upload.single('image'), [
         const special = /[!@#$%^&*(),.?":{}|<>]/;
 
         if (value.length < 5) {
-            throw new Error("password must contain at least 5 characters");
+            throw new Error("password must contain 5 characters");
         }
         if (!isUpper.test(value)) {
-            throw new Error("password must contain at least 1 Uppercase alphabet");
+            throw new Error("password must contain 1 Uppercase alphabet");
         }
         if (!isNumeric.test(value)) {
-            throw new Error("password must contain at least 1 Number");
+            throw new Error("password must contain 1 Number");
         }
         if (!isLower.test(value)) {
-            throw new Error("password must contain at least 1 lowercase character");
+            throw new Error("password must contain 1 lowercase character");
         }
         if (!special.test(value)) {
-            throw new Error("password must contain at least 1 special character");
+            throw new Error("password must contain 1 special character");
         }
         return true;
     }),
@@ -147,19 +147,19 @@ router.post("/login", [
         const special = /[!@#$%^&*(),.?":{}|<>]/;
 
         if (value.length < 5) {
-            throw new Error("password must contain at least 5 characters");
+            throw new Error("password must contain 5 characters");
         }
         if (!isUpper.test(value)) {
-            throw new Error("password must contain at least 1 Uppercase alphabet");
+            throw new Error("password must contain 1 Uppercase alphabet");
         }
         if (!isNumeric.test(value)) {
-            throw new Error("password must contain at least 1 Number");
+            throw new Error("password must contain 1 Number");
         }
         if (!isLower.test(value)) {
-            throw new Error("password must contain at least 1 lowercase character");
+            throw new Error("password must contain 1 lowercase character");
         }
         if (!special.test(value)) {
-            throw new Error("password must contain at least 1 special character");
+            throw new Error("password must contain 1 special character");
         }
         return true;
     }),
@@ -168,7 +168,7 @@ router.post("/login", [
     console.log("clickmmlogin")
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(500).json({ "error in validation": errors.array(), success });
+        return res.status(500).json({ "validationError": errors.array(), success });
     }
 
     const { email, password } = req.body
